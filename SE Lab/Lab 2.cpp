@@ -11,7 +11,7 @@ int main()
     cin >> a;
     cout << "Input b: ";
     cin >> b;
-    cout << "Input step: ";
+    cout << "Input step(should be positive): ";
     cin >> step;
     if (!(step > 0)) {
         do {
