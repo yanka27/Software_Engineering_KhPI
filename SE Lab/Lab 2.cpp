@@ -3,19 +3,17 @@
 
 using namespace std;
 
-void inputA(double& a) {
+void checkA(double& a) {
 
     cout << "Input a: ";
-
     if (!(cin >> a)) {
         throw "Incorrect data.";
     }
 }
 
-void inputB(double& b, double& a) {
+void checkB(double& b, double& a) {
 
     cout << "Input b: ";
-
     if (!(cin >> b)) {
         throw "Incorrect data.";
     }
@@ -24,25 +22,23 @@ void inputB(double& b, double& a) {
     }
 }
 
-void inputN(double& n) {
+void checkN(double& n) {
 
     cout << "Input n (n >= 4): ";
-
     if (!(cin >> n)) {
         throw "Incorrect data.";
     }
     if (n < 4) {
-        throw "Error. 'n' cannot be lower than 4.";
+        throw "'n' must be equal to or higher than 4.";
     }
     if (!(n == (int)n)) {
         throw "Error. 'n' must be an integer.";
     }
 }
 
-void inputStep(double& step) {
+void checkStep(double& step) {
 
     cout << "Input step: ";
-
     if (!(cin >> step)) {
         throw "Incorrect data.";
     }
@@ -79,25 +75,17 @@ double equation(double x, int n) {
     return result;
 }
 
-void sequence(double& a, double& b, double n, double step) {
-
-    for (a; a <= b; a = a + step) {
-        cout << "x = " << a << " " << "y = " << equation(a, n) << endl;
-    }
-}
-
 int main() {
 
     double a, b, n, step;
     try {
-        inputA(a);
-        inputB(b, a);
-        inputN(n);
-        inputStep(step);
-        sequence(a, b, n, step);
-    }
-    catch (const char* message) {
-        cout << message << endl;
+        checkA(a);
+        checkB(b, a);
+        checkN(n);
+        checkStep(step);
+        for (a; a <= b; a = a + step) {
+            cout << "x = " << a << " " << "y = " << equation(a, n) << endl;
+        }
     }
     catch (...) {
         cout << "Unknown error." << endl;
